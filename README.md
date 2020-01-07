@@ -4,7 +4,7 @@ Nom des personnes du groupe :
 - VIEIRA Michael
 - CEGLIE Thomas
 
-Lien du netlify : https://jeu-js-groupe16.netlify.com
+Lien du netlify : https://js-jeu-g16.netlify.com
 
 
 # `OXO` game library
