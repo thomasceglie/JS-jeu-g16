@@ -1,4 +1,9 @@
 body.game {
     background: red;
     background-image: url("/assets/game/background.jpg");
+    position: relative;
+
+    .astronaute {
+        position: absolute;
+    }
 }
