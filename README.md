@@ -1,3 +1,12 @@
+Nom des personnes du groupe : 
+- SUMAMPOW Sentiany Priska
+- FALL Idriss
+- VIEIRA Michael
+- CEGLIE Thomas
+
+Lien du netlify : https://jeu-js-groupe16.netlify.com
+
+
 # `OXO` game library
 
 This is a boilerplate repository using `OXO`, a minimalist game library to handle common actions in games. This is not optimized for production and uses purposefully simplified patterns for an educational purpose.
