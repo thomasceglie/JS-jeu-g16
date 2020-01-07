@@ -1,8 +1,10 @@
 const viewportWidth = window.innerWidth; 
 const stepAstronauteMove = 10;
 const stepBackgroundMove = 100; 
-const limitPourcentageFirstVP = 0.65; 
+const limitPercentageFirstVP = 0.75; 
 const viewportHeight = window.innerHeight;
+
+let astronauteXOffset = 0;
 let backgroundXPosition = 0;
 
 function launchIntro() {
@@ -29,45 +31,52 @@ function launchGame() {
 
 
 function isAstronauteAtVPLimit(astronaute) {
-  const limitCalculate = viewportWidth * limitPourcentageFirstVP;
-  const astronauteXOffset = oxo.animation.getPosition(astronaute).x;
-  console.log("Astronaute position x: " + astronauteXOffset + " limit: " + limitCalculate);
-  return astronauteXOffset >= limitCalculate
+  const limitCalculate = viewportWidth * limitPercentageFirstVP;
+  const astronauteXposition = oxo.animation.getPosition(astronaute).x;
+  console.log("Astronaute position x: " + astronauteXposition + " limit: " + limitCalculate);
+  return astronauteXposition >= limitCalculate;
+}
+
+function isBackgroundNotAtTheEnd() {
+  return backgroundXPosition > 0
 }
 
 function startEventListenerOnKeyPads(selectors) {
-  oxo.inputs.listenKey('up', function() {
+  oxo.inputs.listenKey('up', function () {
     console.log("up");
     oxo.animation.move(selectors.astronaute, 'up', stepAstronauteMove);
   });
 
-  oxo.inputs.listenKey('down', function() {
+  oxo.inputs.listenKey('down', function () {
     console.log("down");
     oxo.animation.move(selectors.astronaute, 'down', stepAstronauteMove);
   });
 
-  oxo.inputs.listenKey('right', function() {
+  oxo.inputs.listenKey('right', function () {
     console.log("right");
     console.log("is the astronaute reach the limit VP ? => " + isAstronauteAtVPLimit(selectors.astronaute));
     if (isAstronauteAtVPLimit(selectors.astronaute) == false) {
+      astronauteXOffset += stepAstronauteMove;
       oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
     } else {
+      astronauteXOffset += stepAstronauteMove;
       backgroundXPosition += stepBackgroundMove;
-      selectors.background.style.backgroundPositionX = backgroundXPosition + "px";
+      selectors.background.style.backgroundPositionX = backgroundXPosition * -1 + "px";
       console.log(selectors.background.style.backgroundPositionX);
     }
   });
 
-  oxo.inputs.listenKey('left', function() {
+  oxo.inputs.listenKey('left', function () {
     console.log("left");
-    oxo.animation.move(selectors.astronaute, 'left', stepAstronauteMove);
-    console.log("is the astronaute reach the limit VP? => " + isAstronauteAtVPLimit(selectors.astronaute));
-    if (isAstronauteAtVPLimit(selectors.astronaute) == false) {
-      oxo.animation.move(selectors.astronaute, 'left', stepAstronauteMove);
-    } else {
+    //|| isBackgroundAfterLimit()
+    if (isBackgroundNotAtTheEnd()) {
+      astronauteXOffset -= stepAstronauteMove;
       backgroundXPosition -= stepBackgroundMove;
-      selectors.background.style.backgroundPositionX = backgroundXPosition + "px";
+      selectors.background.style.backgroundPositionX = backgroundXPosition * -1 + "px";
       console.log(selectors.background.style.backgroundPositionX);
+    } else {
+      astronauteXOffset -= stepAstronauteMove;
+      oxo.animation.move(selectors.astronaute, 'left', stepAstronauteMove);
     }
   });
 }
