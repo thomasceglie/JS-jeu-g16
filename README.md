@@ -3,6 +3,7 @@ Nom des personnes du groupe :
 - FALL Idriss
 - VIEIRA Michael
 - CEGLIE Thomas
+- Samuel
 
 Lien du netlify : https://js-jeu-g16.netlify.com
 
