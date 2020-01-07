@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+  }
+  
+   body.intro {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .title {
+    font-size: 48px;
+    text-align: center;
+    margin: 24px;
+  }
+  
+  p.explaination {
+    font-size: 40px;
+    padding: 120px;
+    text-align: center;
+  }
+  
+  button.start {
+    display: block;
+    font-size: 32px;
+    border-radius: 54px;
+    padding: 4px 40px;
+    background-color: pink;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
