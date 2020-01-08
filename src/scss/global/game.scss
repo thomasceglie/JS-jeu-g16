@@ -3,8 +3,13 @@ body.game {
     position: relative;
     animation: moveIt 63s linear;
 
-    .astronaute {
+    div.astronaute {
+        background-image: url("/assets/game/astronaute.png");
         position: absolute;
+        background-position: cover;
+        background-size: cover;
+        height: 120px;
+        width: 120px;
     }
     div.fireball {
         background-image: url("/assets/game/fireball.png");

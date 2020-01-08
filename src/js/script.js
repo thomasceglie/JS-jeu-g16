@@ -19,7 +19,7 @@ function launchGame() {
   oxo.screens.loadScreen('game', function() {
     
     const selectors = {
-      "astronaute": document.querySelector("svg.astronaute"),
+      "astronaute": document.querySelector("div.astronaute"),
       "background": document.querySelector("body.game")
     };
 
