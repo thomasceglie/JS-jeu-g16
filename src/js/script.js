@@ -31,6 +31,19 @@ function launchGame() {
     oxo.animation.setPosition(selectors.astronaute, { x: 600, y: 400 });
     
     startEventListenerOnKeyPads(selectors);
+
+    //generate fireball
+    var element = oxo.elements.createElement({
+      type: 'div', // optional
+      class: 'fireball', // optional,
+      obstacle: true, // optional,
+      styles: { // optional
+        transform: 'translate(100px, 0px)'
+      },
+      appendTo: 'body' // optional
+    });
+  
+  
   });
 }
 

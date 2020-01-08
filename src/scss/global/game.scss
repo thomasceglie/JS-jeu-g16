@@ -6,6 +6,14 @@ body.game {
     .astronaute {
         position: absolute;
     }
+    div.fireball {
+        background-image: url("/assets/game/fireball.png");
+        position: absolute;
+        background-position: cover;
+        background-size: cover;
+        height: 56px;
+        width: 56px;
+    }
 }
 
 
