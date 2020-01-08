@@ -1,5 +1,9 @@
-@import 'vendors/reset';
+@import "vendors/reset";
 
-@import 'global/layout';
+@import "global/layout";
 
-@import 'global/intro';
+@import "global/intro";
+
+@import "global/game.scss";
+
+@import "global/screen-win.scss";

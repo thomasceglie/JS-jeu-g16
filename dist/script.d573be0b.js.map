@@ -1,1 +1,0 @@
-{"version":3,"sources":["js/script.js"],"names":["oxo","screens","loadScreen"],"mappings":"AAAAA,GAAG,CAACC,OAAJ,CAAYC,UAAZ,CAAuB,OAAvB,EAAgC,YAAW,CACvC;AACD,CAFH","file":"script.d573be0b.js","sourceRoot":"../src","sourcesContent":["oxo.screens.loadScreen('intro', function() {\n    // game.html is loaded, do something\n  });\n  "]}
