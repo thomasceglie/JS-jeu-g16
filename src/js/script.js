@@ -24,12 +24,42 @@ function launchGame() {
     };
 
     // Init backgroundPositionY to the end minus viewport
-    backgroundYPosition = 6000;
+    backgroundYPosition = 800;
     selectors.background.style.backgroundPositionY = backgroundYPosition + "px";
-
+    
+    // Init positin astronaute
+    oxo.animation.setPosition(selectors.astronaute, { x: 400, y: 20 });
+    
     startEventListenerOnKeyPads(selectors);
   });
 }
+
+function startEventListenerOnKeyPads(selectors) {
+  
+  oxo.inputs.listenKey('right', function () {
+    console.log("right");
+    oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
+  });
+
+  oxo.inputs.listenKey('left', function () {
+    console.log("left");
+    oxo.animation.move(selectors.astronaute, 'left', stepAstronauteMove);
+  });
+
+  oxo.inputs.listenKey('up', function () {
+    console.log("up");
+    oxo.animation.move(selectors.astronaute, 'up', stepAstronauteMove);
+
+  });
+
+    oxo.inputs.listenKey('down', function () {
+      console.log("down");
+      oxo.animation.move(selectors.astronaute, 'down', stepAstronauteMove);
+    
+    });
+
+  }
+
 
 launchIntro()
 

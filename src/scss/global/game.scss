@@ -1,8 +1,15 @@
 body.game {
     background-image: url("/assets/game/background-vertical.jpg");
     position: relative;
+    animation: moveIt 360s ;
 
     .astronaute {
         position: absolute;
     }
+}
+
+
+@keyframes moveIt {
+from {background-position: 0 100%;}
+to {background-position: 0 0;}
 }
