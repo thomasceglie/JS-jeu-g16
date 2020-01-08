@@ -1,7 +1,7 @@
 body.game {
     background-image: url("/assets/game/background-vertical.jpg");
     position: relative;
-    animation: moveIt 63s linear;
+    animation: moveItBackground 63s linear;
 
     div.astronaute {
         background-image: url("/assets/game/astronaute.png");
@@ -18,13 +18,25 @@ body.game {
         background-size: cover;
         height: 56px;
         width: 56px;
+        
+        // &.launch {
+        //     animation: moveItObstacle 5s linear infinite;
+        // }
+        
     }
 }
 
 
-@keyframes moveIt {
+@keyframes moveItBackground {
 from {background-position: 0 0;}
 47% {background-position: 0 7000px;}
 51%{background-position: 0 19500px;}
 to {background-position: 0 25578px;}
 }
+
+// @keyframes moveItObstacle {
+//     0% {transform: translateY(0);}
+//     25% {transform: translateY(25%);}
+//     50% {transform: translateY(50%);}
+//     100% {transform: translateY(100%);}
+//     }

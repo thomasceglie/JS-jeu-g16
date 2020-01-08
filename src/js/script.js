@@ -6,6 +6,57 @@ const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
 
+const obstacleGeneratedScenarioList = [
+  [{
+    "type": "fireball",
+    "translateX": 800
+  }, {
+    "type": "fireball",
+    "translateX": 500
+  }, {
+    "type": "fireball",
+    "translateX": 430
+  }],
+   [{
+      "type": "fireball",
+      "translateX": 700
+    }, {
+      "type": "fireball",
+      "translateX": 500
+    }],
+    [{
+      "type": "fireball",
+      "translateX": 450
+    }],
+]; 
+
+let obstacleGeneratedList = []
+
+function createObstacle(type, translateX, astronaute) {
+  let obstacle = oxo.elements.createElement({
+      type: 'div', 
+      class: 'obstacle ' + type, 
+      obstacle: false,
+      styles: {
+        transform: 'translateX(' + translateX + 'px)'
+      },
+      appendTo: 'body'
+  });
+
+  oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function() {
+    oxo.screens.loadScreen('game-over', function() {});
+  });
+  
+  return obstacle
+}
+
+// helper
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function launchIntro() {
   oxo.screens.loadScreen('intro', function() {
     const buttonPlay = document.querySelector('button.start');
@@ -13,6 +64,35 @@ function launchIntro() {
       launchGame()
     });
   });
+} 
+
+function isRandomTranslateXAlreadySet(newRandomTransform) {
+  let isAlreadySet = false
+  fireballGeneratedlist.forEach(function(fireball) {
+    let fireballTranform = fireball.style.transform
+    if (fireballTranform == newRandomTransform) {
+      isAlreadySet = true
+    }
+  });
+
+  return isAlreadySet;
+}
+
+function generateObstacleLine(astronaute) {
+  let indexRandom = getRandomInt(0, obstacleGeneratedScenarioList.length - 1);
+  console.log("scenario index choose " + indexRandom );
+  let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
+
+  scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
+    obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
+  })
+
+  setInterval(function () {
+    obstacleGeneratedList.forEach(function (obstacle) {
+      //console.log(obstacle);
+      oxo.animation.move(obstacle, 'down', 20);
+    })
+  }, 800);
 }
 
 function launchGame() {
@@ -32,18 +112,22 @@ function launchGame() {
     
     startEventListenerOnKeyPads(selectors);
 
-    //generate fireball
-    var element = oxo.elements.createElement({
-      type: 'div', // optional
-      class: 'fireball', // optional,
-      obstacle: true, // optional,
-      styles: { // optional
-        transform: 'translate(100px, 0px)'
-      },
-      appendTo: 'body' // optional
-    });
-  
-  
+    //generateObstacleLine(selectors.astronaute);
+
+    let obstacleInterval = setInterval(function () {
+      generateObstacleLine(selectors.astronaute);
+    }, 8000);
+
+    setTimeout(function () {
+      clearInterval(obstacleInterval);
+      let allObstacle = document.querySelectorAll("div.obstacle");
+      allObstacle.forEach(function (obstacle) {
+        obstacle.remove();
+      })
+    }, 29600);
+
+
+
   });
 }
 
