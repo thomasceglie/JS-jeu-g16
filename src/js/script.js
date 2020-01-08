@@ -2,7 +2,7 @@
 
 const viewportWidth = window.innerWidth; 
 const viewportHeight = window.innerHeight;
-const stepAstronauteMove = 10;
+const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
 
@@ -28,7 +28,7 @@ function launchGame() {
     selectors.background.style.backgroundPositionY = backgroundYPosition + "px";
     
     // Init positin astronaute
-    oxo.animation.setPosition(selectors.astronaute, { x: 400, y: 20 });
+    oxo.animation.setPosition(selectors.astronaute, { x: 600, y: 400 });
     
     startEventListenerOnKeyPads(selectors);
   });
