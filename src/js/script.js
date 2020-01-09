@@ -1,4 +1,4 @@
-function launchome() {
+function launchhome() {
   oxo.screens.loadScreen('home', function () {
     const buttonStartIntro = document.querySelector('button.play__button');
     buttonStartIntro.addEventListener('click', function () {
@@ -228,7 +228,7 @@ function startEventListenerOnKeyPads(selectors) {
 }
 
 
-launchHome()
+launchhome()
 
 
 /*
