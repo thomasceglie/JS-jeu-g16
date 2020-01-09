@@ -207,7 +207,8 @@ function createObstacle(type, translateX, astronaute) {
 
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
     if (type === 'fireball' && 'satelite') {
-      launchgameover()
+      launchgameover();
+      
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
       console.log(document.querySelector("div.countFire2"))
@@ -273,7 +274,7 @@ function launchscreenwin() {
   oxo.screens.loadScreen('screen-win', function () {
     const buttonPlayAgain = document.querySelector('button.again');
     buttonPlayAgain.addEventListener('click', function () {
-      launchhome()
+      launchIntro()
     });
   });
 }
@@ -334,8 +335,8 @@ function launchGame() {
     
     // when reach on top
     setTimeout(function () {
-      oxo.screens.loadScreen('screen-win', function () {})
-    }, 37000);
+      launchscreenwin()
+    }, 63000);
     
 
 
