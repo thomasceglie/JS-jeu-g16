@@ -18,7 +18,7 @@ const numberOfFireTakenForVictory = 3;
 
 const obstacleGeneratedScenarioList = [
   [{
-    "type": "satelite",
+    "type": "fire",
     "translateX": 800
   }, {
     "type": "fire",
@@ -28,7 +28,7 @@ const obstacleGeneratedScenarioList = [
     "translateX": 430
   }],
   [{
-    "type": "satelite",
+    "type": "fire",
     "translateX": 700
   }, {
     "type": "fireball",
@@ -45,7 +45,7 @@ const obstacleGeneratedScenarioList = [
     "type": "fire",
     "translateX": 500
   }, {
-    "type": "satelite",
+    "type": "fire",
     "translateX": 430
   }, {
     "type": "fire",
@@ -81,9 +81,9 @@ function createObstacle(type, translateX, astronaute) {
       let counterFire = document.querySelector("div.countFire" + oxo.player.getScore());
       counterFire.style.opacity = 1;
 
-      if (oxo.player.getScore() == numberOfFireTakenForVictory) {
-        oxo.screens.loadScreen('screen-win', function () { });
-      }
+      //if (oxo.player.getScore() == numberOfFireTakenForVictory) {
+      //  oxo.screens.loadScreen('screen-win', function () { });
+      //}
     }
   });
 
