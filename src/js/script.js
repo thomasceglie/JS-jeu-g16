@@ -59,6 +59,51 @@ const obstacleGeneratedScenarioList = [
   }, {
     "type": "fire",
     "translateX": 500
+  }],
+  [{
+    "type": "fire",
+    "translateX": 650
+  }, {
+    "type": "fire",
+    "translateX": 450
+  }, {
+    "type": "fireball",
+    "translateX": 530
+  }, {
+    "type": "fire",
+    "translateX": 780
+  }, {
+    "type": "fireball",
+    "translateX": 550
+  }],
+  [{
+    "type": "fireball",
+    "translateX": 600
+  }, {
+    "type": "fireball",
+    "translateX": 720
+  }, {
+    "type": "fire",
+    "translateX": 460
+  }, {
+    "type": "fireball",
+    "translateX": 800
+  }],
+  [{
+    "type": "fireball",
+    "translateX": 740
+  }, {
+    "type": "fire",
+    "translateX": 500
+  }, {
+    "type": "fireball",
+    "translateX": 430
+  }, {
+    "type": "fire",
+    "translateX": 800
+  }, {
+    "type": "fireball",
+    "translateX": 500
   }]
 ];
 
