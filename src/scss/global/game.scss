@@ -39,6 +39,13 @@ body.game {
         width: 40px;
     }
 
+    div.cleanZone {
+        position: absolute;
+        width: 1324px;
+        height: 20px;
+        top: 730px;
+    }
+
     div.countFire {
         background-image: url("/assets/game/fire.png");
         position: absolute;

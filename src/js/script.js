@@ -107,6 +107,11 @@ function createObstacle(type, translateX, astronaute) {
       }
     }
   });
+
+  const cleanZone = document.querySelector("div.cleanZone")
+  oxo.elements.onCollisionWithElementOnce(cleanZone, obstacle, function () {
+    obstacle.remove();
+  });
   
   return obstacle
 }
@@ -190,6 +195,16 @@ function launchGame() {
 
 
 
+    // clean obstacle
+    let cleanZone = oxo.elements.createElement({
+      type: 'div', 
+      class: 'cleanZone',
+      obstacle: false,
+      styles: {
+        transform: 'translate(0px, 99%)'
+      },
+      appendTo: 'body'
+    });
   });
 }
 
