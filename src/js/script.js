@@ -269,11 +269,11 @@ function launchgameover() {
   });
 }
 
-function launchgameover() {
-  oxo.screens.loadScreen('game-over', function () {
-    const buttonRestartTheGame = document.querySelector('button.button-restart');
-    buttonRestartTheGame.addEventListener('click', function () {
-      launchGame()
+function launchscreenwin() {
+  oxo.screens.loadScreen('screen-win', function () {
+    const buttonPlayAgain = document.querySelector('button.again');
+    buttonPlayAgain.addEventListener('click', function () {
+      launchhome()
     });
   });
 }
