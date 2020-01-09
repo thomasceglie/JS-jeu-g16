@@ -1,4 +1,3 @@
-
 // Constant
 
 const viewportWidth = window.innerWidth;
@@ -7,7 +6,7 @@ const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
 const numberOfFireTakenForVictory = 3;
-
+const soundPlayer = new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3");
 
 // const obstacleGeneratedScenarioListSatelite = [
 //   [{
@@ -261,6 +260,7 @@ function launchIntro() {
 
 function launchgameover() {
   oxo.screens.loadScreen('game-over', function () {
+    soundPlayer.pause();
     const buttonRestartTheGame = document.querySelector('button.button-restart');
     buttonRestartTheGame.addEventListener('click', function () {
       launchLoader()
@@ -289,6 +289,10 @@ function isRandomTranslateXAlreadySet(newRandomTransform) {
   return isAlreadySet;
 }
 
+function playSound() {
+  soundPlayer.play();
+}
+
 function generateObstacleLine(astronaute, shouldGenerateSatelite) {
 
   if (shouldGenerateSatelite) {
@@ -311,6 +315,7 @@ function generateObstacleLine(astronaute, shouldGenerateSatelite) {
   }
 }
 function launchGame() {
+  playSound();
   const selectors = {
     "astronaute": document.querySelector("div.astronaute"),
     "background": document.querySelector("body.game")
