@@ -6,6 +6,17 @@ const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
 
+
+var element = oxo.elements.createElement({
+  type: 'div', 
+  class: 'fire',
+  obstacle: false, 
+  styles: {
+    transform: 'translate(400px, 200px)'
+  },
+  appendTo: 'body'
+});
+
 const obstacleGeneratedScenarioList = [
   [{
     "type": "fireball",

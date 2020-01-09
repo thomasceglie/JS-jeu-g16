@@ -11,6 +11,16 @@ body.game {
         height: 120px;
         width: 120px;
     }
+
+    div.fire {
+        background-image: url("/assets/game/fire.png");
+        position: absolute;
+        background-position: cover;
+        background-size: cover;
+        height: 40px;
+        width: 40px;
+    }
+
     div.fireball {
         background-image: url("/assets/game/fireball.png");
         position: absolute;
