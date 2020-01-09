@@ -28,11 +28,15 @@ body.game {
         background-size: cover;
         height: 56px;
         width: 56px;
-        
-        // &.launch {
-        //     animation: moveItObstacle 5s linear infinite;
-        // }
-        
+    }
+
+    div.satelite {
+        background-image: url("/assets/game/satellite.png");
+        position: absolute;
+        background-position: cover;
+        background-size: cover;
+        height: 40px;
+        width: 40px;
     }
 }
 

@@ -5,41 +5,54 @@ const viewportHeight = window.innerHeight;
 const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
+const numberOfFireTakenForVictory = 2;
 
 
-var element = oxo.elements.createElement({
-  type: 'div', 
-  class: 'fire',
-  obstacle: false, 
-  styles: {
-    transform: 'translate(400px, 200px)'
-  },
-  appendTo: 'body'
-});
+
 
 const obstacleGeneratedScenarioList = [
   [{
-    "type": "fireball",
-    "translateX": 800
-  }, {
-    "type": "fireball",
+    "type": "fire",
     "translateX": 500
-  }, {
-    "type": "fireball",
-    "translateX": 430
-  }],
-   [{
-      "type": "fireball",
-      "translateX": 700
-    }, {
-      "type": "fireball",
-      "translateX": 500
-    }],
-    [{
-      "type": "fireball",
-      "translateX": 450
-    }],
-]; 
+  }]
+];
+
+// const obstacleGeneratedScenarioList = [
+//   [{
+//     "type": "satelite",
+//     "translateX": 800
+//   }, {
+//     "type": "fire",
+//     "translateX": 500
+//   }, {
+//     "type": "fireball",
+//     "translateX": 430
+//   }],
+//   [{
+//     "type": "satelite",
+//     "translateX": 700
+//   }, {
+//     "type": "fireball",
+//     "translateX": 500
+//   }],
+//   [{
+//     "type": "fire",
+//     "translateX": 450
+//   }],
+//   [{
+//     "type": "fireball",
+//     "translateX": 800
+//   }, {
+//     "type": "fire",
+//     "translateX": 500
+//   }, {
+//     "type": "fire",
+//     "translateX": 430
+//   }, {
+//     "type": "fire",
+//     "translateX": 500
+//   }]
+// ]; 
 
 let obstacleGeneratedList = []
 
@@ -54,8 +67,16 @@ function createObstacle(type, translateX, astronaute) {
       appendTo: 'body'
   });
 
-  oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function() {
-    oxo.screens.loadScreen('game-over', function() {});
+  oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
+    if (type === 'fireball' && 'satelite') {
+      oxo.screens.loadScreen('game-over', function() {});
+    } else if (type === 'fire') {
+      obstacle.remove();
+      oxo.player.addToScore(1)
+      if (oxo.player.getScore() == numberOfFireTakenForVictory) {
+        oxo.screens.loadScreen('screen-win', function() {});
+      }
+    }
   });
   
   return obstacle
@@ -91,7 +112,8 @@ function isRandomTranslateXAlreadySet(newRandomTransform) {
 
 function generateObstacleLine(astronaute) {
   let indexRandom = getRandomInt(0, obstacleGeneratedScenarioList.length - 1);
-  console.log("scenario index choose " + indexRandom );
+  console.log("scenario index choose " + indexRandom);
+  
   let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
 
   scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
@@ -103,7 +125,7 @@ function generateObstacleLine(astronaute) {
       //console.log(obstacle);
       oxo.animation.move(obstacle, 'down', 20);
     })
-  }, 800);
+  }, 200);
 }
 
 function launchGame() {
