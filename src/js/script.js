@@ -1,6 +1,7 @@
+//oxo.screens.loadScreen('game-over');
 // Constant
 
-const viewportWidth = window.innerWidth; 
+const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
@@ -50,24 +51,24 @@ const obstacleGeneratedScenarioList = [
     "type": "fire",
     "translateX": 500
   }]
-]; 
+];
 
 let obstacleGeneratedList = []
 
 function createObstacle(type, translateX, astronaute) {
   let obstacle = oxo.elements.createElement({
-      type: 'div', 
-      class: 'obstacle ' + type, 
-      obstacle: false,
-      styles: {
-        transform: 'translateX(' + translateX + 'px)'
-      },
-      appendTo: 'body'
+    type: 'div',
+    class: 'obstacle ' + type,
+    obstacle: false,
+    styles: {
+      transform: 'translateX(' + translateX + 'px)'
+    },
+    appendTo: 'body'
   });
 
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
     if (type === 'fireball' && 'satelite') {
-      oxo.screens.loadScreen('game-over', function() {});
+      oxo.screens.loadScreen('game-over', function () { });
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
       console.log(document.querySelector("div.countFire2"))
@@ -81,7 +82,7 @@ function createObstacle(type, translateX, astronaute) {
       counterFire.style.opacity = 1;
 
       if (oxo.player.getScore() == numberOfFireTakenForVictory) {
-        oxo.screens.loadScreen('screen-win', function() {});
+        oxo.screens.loadScreen('screen-win', function () { });
       }
     }
   });
@@ -90,7 +91,7 @@ function createObstacle(type, translateX, astronaute) {
   oxo.elements.onCollisionWithElementOnce(cleanZone, obstacle, function () {
     obstacle.remove();
   });
-  
+
   return obstacle
 }
 
@@ -102,17 +103,17 @@ function getRandomInt(min, max) {
 }
 
 function launchIntro() {
-  oxo.screens.loadScreen('intro', function() {
-    const buttonPlay = document.querySelector('button.start');
+  oxo.screens.loadScreen('intro', function () {
+    const buttonPlay = document.querySelector('button.page__button');
     buttonPlay.addEventListener('click', function () {
       launchGame()
     });
   });
-} 
+}
 
 function isRandomTranslateXAlreadySet(newRandomTransform) {
   let isAlreadySet = false
-  fireballGeneratedlist.forEach(function(fireball) {
+  fireballGeneratedlist.forEach(function (fireball) {
     let fireballTranform = fireball.style.transform
     if (fireballTranform == newRandomTransform) {
       isAlreadySet = true
@@ -125,7 +126,7 @@ function isRandomTranslateXAlreadySet(newRandomTransform) {
 function generateObstacleLine(astronaute) {
   let indexRandom = getRandomInt(0, obstacleGeneratedScenarioList.length - 1);
   console.log("scenario index choose " + indexRandom);
-  
+
   let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
 
   scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
@@ -141,8 +142,8 @@ function generateObstacleLine(astronaute) {
 }
 
 function launchGame() {
-  oxo.screens.loadScreen('game', function() {
-    
+  oxo.screens.loadScreen('game', function () {
+
     const selectors = {
       "astronaute": document.querySelector("div.astronaute"),
       "background": document.querySelector("body.game")
@@ -151,10 +152,10 @@ function launchGame() {
     // Init backgroundPositionY to the end minus viewport
     backgroundYPosition = 800;
     selectors.background.style.backgroundPositionY = backgroundYPosition + "px";
-    
+
     // Init positin astronaute
     oxo.animation.setPosition(selectors.astronaute, { x: 600, y: 400 });
-    
+
     startEventListenerOnKeyPads(selectors);
 
     //generateObstacleLine(selectors.astronaute);
@@ -165,7 +166,7 @@ function launchGame() {
 
     // gameover if x second
     setTimeout(function () {
-      oxo.screens.loadScreen('game-over', function () {})
+      oxo.screens.loadScreen('game-over', function () { })
     }, 35000);
 
 
@@ -180,7 +181,7 @@ function launchGame() {
 
     // clean obstacle
     let cleanZone = oxo.elements.createElement({
-      type: 'div', 
+      type: 'div',
       class: 'cleanZone',
       obstacle: false,
       styles: {
@@ -192,7 +193,7 @@ function launchGame() {
 }
 
 function startEventListenerOnKeyPads(selectors) {
-  
+
   oxo.inputs.listenKey('right', function () {
     console.log("right");
     oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
@@ -209,13 +210,13 @@ function startEventListenerOnKeyPads(selectors) {
 
   });
 
-    oxo.inputs.listenKey('down', function () {
-      console.log("down");
-      oxo.animation.move(selectors.astronaute, 'down', stepAstronauteMove);
-    
-    });
+  oxo.inputs.listenKey('down', function () {
+    console.log("down");
+    oxo.animation.move(selectors.astronaute, 'down', stepAstronauteMove);
 
-  }
+  });
+
+}
 
 
 launchIntro()
@@ -223,10 +224,10 @@ launchIntro()
 
 /*
 // Constant
-const viewportWidth = window.innerWidth; 
+const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const stepAstronauteMove = 10;
-const stepBackgroundMove = 100; 
+const stepBackgroundMove = 100;
 const limitPercentageFirstVP = 0.5;
 const restartAstronauteToMoveFromBackground = 5000;
 const heightBackground = 25578;
@@ -246,7 +247,7 @@ function launchIntro() {
 
 function launchGame() {
   oxo.screens.loadScreen('game', function() {
-    
+
     const selectors = {
       "astronaute": document.querySelector("svg.astronaute"),
       "background": document.querySelector("body.game")
@@ -277,7 +278,7 @@ function isBackgroundAfterLimit() {
 }
 
 function startEventListenerOnKeyPads(selectors) {
-  
+
   oxo.inputs.listenKey('right', function () {
     console.log("right");
     oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
@@ -291,7 +292,7 @@ function startEventListenerOnKeyPads(selectors) {
   oxo.inputs.listenKey('up', function () {
     console.log("up");
     console.log("is the astronaute reach the limit VP ? => " + isAstronauteAtVPLimit(selectors.astronaute));
-    
+
     // with extra
     // if (isAstronauteAtVPLimit(selectors.astronaute) == false) {
     //   oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
@@ -339,10 +340,10 @@ launchIntro()
 /*
 
 // Constant
-const viewportWidth = window.innerWidth; 
+const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const stepAstronauteMove = 10;
-const stepBackgroundMove = 100; 
+const stepBackgroundMove = 100;
 const limitPercentageFirstVP = 0.5;
 const restartAstronauteToMoveFromBackground = 5000;
 
@@ -361,7 +362,7 @@ function launchIntro() {
 
 function launchGame() {
   oxo.screens.loadScreen('game', function() {
-    
+
     const selectors = {
       "astronaute": document.querySelector("svg.astronaute"),
       "background": document.querySelector("body.game")
@@ -391,7 +392,7 @@ function isBackgroundAfterLimit() {
 }
 
 function startEventListenerOnKeyPads(selectors) {
-  
+
   oxo.inputs.listenKey('up', function () {
     console.log("up");
     oxo.animation.move(selectors.astronaute, 'up', stepAstronauteMove);
@@ -405,7 +406,7 @@ function startEventListenerOnKeyPads(selectors) {
   oxo.inputs.listenKey('right', function () {
     console.log("right");
     console.log("is the astronaute reach the limit VP ? => " + isAstronauteAtVPLimit(selectors.astronaute));
-    
+
     // with extra
     // if (isAstronauteAtVPLimit(selectors.astronaute) == false) {
     //   oxo.animation.move(selectors.astronaute, 'right', stepAstronauteMove);
