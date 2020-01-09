@@ -1,5 +1,4 @@
 
-//oxo.screens.loadScreen('game-over');
 // Constant
 
 const viewportWidth = window.innerWidth;
@@ -208,7 +207,7 @@ function createObstacle(type, translateX, astronaute) {
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
     if (type === 'fireball' && 'satelite') {
       launchgameover();
-      
+
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
       console.log(document.querySelector("div.countFire2"))
@@ -296,7 +295,7 @@ function generateObstacleLine(astronaute) {
   console.log("scenario index choose " + indexRandom);
 
   let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
-  console.log("scenarioChooseWithObstacleList",scenarioChooseWithObstacleList)
+  console.log("scenarioChooseWithObstacleList", scenarioChooseWithObstacleList)
   scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
     obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
   })
@@ -331,17 +330,17 @@ function launchGame() {
     let obstacleInterval = setInterval(function () {
       generateObstacleLine(selectors.astronaute);
     }, 8000)
-      
-    
+
+
     // when reach on top
     setTimeout(function () {
       launchscreenwin()
     }, 63000);
-    
+
 
 
     // remove after the the exit of vulcain
-      setTimeout(function () {
+    setTimeout(function () {
 
       clearInterval(obstacleInterval);
       let allObstacle = document.querySelectorAll("div.obstacle");
