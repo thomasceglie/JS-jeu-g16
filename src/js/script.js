@@ -234,12 +234,13 @@ function createObstacle(type, translateX, astronaute) {
   return obstacle
 }
 
-// helper
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 
 function launchhome() {
   oxo.screens.loadScreen('home', function () {
@@ -285,7 +286,7 @@ function generateObstacleLine(astronaute) {
   console.log("scenario index choose " + indexRandom);
 
   let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
-
+  console.log("scenarioChooseWithObstacleList",scenarioChooseWithObstacleList)
   scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
     obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
   })
@@ -319,11 +320,19 @@ function launchGame() {
 
     let obstacleInterval = setInterval(function () {
       generateObstacleLine(selectors.astronaute);
-    }, 6000).
+    }, 8000)
+      
+    /*
+    // gameover if x second
+    setTimeout(function () {
+      oxo.screens.loadScreen('game-over', function () {})
+    }, 35000);
+    */
 
 
     // remove after the the exit of vulcain
-    setTimeout(function () {
+      setTimeout(function () {
+
       clearInterval(obstacleInterval);
       let allObstacle = document.querySelectorAll("div.obstacle");
       allObstacle.forEach(function (obstacle) {
