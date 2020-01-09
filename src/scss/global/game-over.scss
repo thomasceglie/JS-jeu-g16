@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body.game-over {
   position: absolute;
   width: 354px;
@@ -11,6 +12,17 @@ body.game-over {
   line-height: 120px;
   color: #FDE526;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 247, 171, 0.5);
+=======
+.gameOver {
+width: 354px;
+font-family: Russo One;
+font-style: normal;
+font-weight: normal;
+font-size: 100px;
+line-height: 120px;
+color: #FDE526;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 247, 171, 0.5);
+>>>>>>> 678b94b63b3cab44e1249fb2732bc5eac3f70bbe
 }
 
 .button-restart {
@@ -22,10 +34,10 @@ body.game-over {
   padding-left: 80px;
   padding-right: 80px;
   border-radius: 25px;
-  margin-top: 20px;
   background-color: #fde526;
   text-decoration: none;
-  margin-top: 100px;
+ margin-top: 100px;
+ 
 }
 
 .container {
@@ -33,4 +45,9 @@ body.game-over {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  background: url(../../img/background-game-over.png);
+  width: 100vw;
+  height: 100vh;
 }
+
+
