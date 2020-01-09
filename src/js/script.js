@@ -6,7 +6,7 @@ const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
 const numberOfFireTakenForVictory = 3;
-const soundPlayer = new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3");
+const soundPlayer = new Audio("http://sentiany.fr/backgroundMusic.ogg");
 
 // const obstacleGeneratedScenarioListSatelite = [
 //   [{
