@@ -207,7 +207,8 @@ function createObstacle(type, translateX, astronaute) {
 
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
     if (type === 'fireball' && 'satelite') {
-      launchgameover()
+      launchgameover();
+      
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
       console.log(document.querySelector("div.countFire2"))
@@ -234,12 +235,13 @@ function createObstacle(type, translateX, astronaute) {
   return obstacle
 }
 
-// helper
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 
 function launchhome() {
   oxo.screens.loadScreen('home', function () {
@@ -268,6 +270,15 @@ function launchgameover() {
   });
 }
 
+function launchscreenwin() {
+  oxo.screens.loadScreen('screen-win', function () {
+    const buttonPlayAgain = document.querySelector('button.again');
+    buttonPlayAgain.addEventListener('click', function () {
+      launchIntro()
+    });
+  });
+}
+
 function isRandomTranslateXAlreadySet(newRandomTransform) {
   let isAlreadySet = false
   fireballGeneratedlist.forEach(function (fireball) {
@@ -285,7 +296,7 @@ function generateObstacleLine(astronaute) {
   console.log("scenario index choose " + indexRandom);
 
   let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
-
+  console.log("scenarioChooseWithObstacleList",scenarioChooseWithObstacleList)
   scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
     obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
   })
@@ -319,11 +330,19 @@ function launchGame() {
 
     let obstacleInterval = setInterval(function () {
       generateObstacleLine(selectors.astronaute);
-    }, 6000).
+    }, 8000)
+      
+    
+    // when reach on top
+    setTimeout(function () {
+      launchscreenwin()
+    }, 63000);
+    
 
 
     // remove after the the exit of vulcain
-    setTimeout(function () {
+      setTimeout(function () {
+
       clearInterval(obstacleInterval);
       let allObstacle = document.querySelectorAll("div.obstacle");
       allObstacle.forEach(function (obstacle) {
