@@ -9,7 +9,7 @@ const limitPercentageFirstVP = 0.5;
 const numberOfFireTakenForVictory = 3;
 
 
-// const obstacleGeneratedScenarioList = [
+// const obstacleGeneratedScenarioListSatelite = [
 //   [{
 //     "type": "fire",
 //     "translateX": 500
@@ -101,21 +101,20 @@ const obstacleGeneratedScenarioList = [
   }]
 ];
 
-/*
 const obstacleGeneratedScenarioListSatelite = [
   [{
     "type": "satelite",
-    "translateX": 800
+    "translateX": 330
   }, {
     "type": "satelite",
-    "translateX": 500
+    "translateX": 900
   }, {
     "type": "satelite",
-    "translateX": 430
+    "translateX": 180
   }],
   [{
     "type": "satelite",
-    "translateX": 700
+    "translateX": 900
   }, {
     "type": "satelite",
     "translateX": 500
@@ -129,26 +128,26 @@ const obstacleGeneratedScenarioListSatelite = [
   }],
   [{
     "type": "satelite",
-    "translateX": 800
+    "translateX": 750
   }, {
     "type": "satelite",
-    "translateX": 500
+    "translateX": 900
   }, {
     "type": "satelite",
-    "translateX": 430
+    "translateX": 230
   }, {
     "type": "satelite",
-    "translateX": 500
+    "translateX": 400
   }],
   [{
     "type": "satelite",
-    "translateX": 650
+    "translateX": 950
   }, {
     "type": "satelite",
-    "translateX": 450
+    "translateX": 350
   }, {
     "type": "satelite",
-    "translateX": 530
+    "translateX": 280
   }, {
     "type": "satelite",
     "translateX": 780
@@ -158,40 +157,39 @@ const obstacleGeneratedScenarioListSatelite = [
   }],
   [{
     "type": "satelite",
-    "translateX": 600
+    "translateX": 950
   }, {
     "type": "satelite",
-    "translateX": 720
+    "translateX": 820
   }, {
     "type": "satelite",
-    "translateX": 460
-  }, {
-    "type": "satelite",
-    "translateX": 800
-  }],
-  [{
-    "type": "satelite",
-    "translateX": 740
+    "translateX": 300
   }, {
     "type": "satelite",
     "translateX": 500
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 550
   }, {
     "type": "satelite",
-    "translateX": 430
+    "translateX": 200
   }, {
     "type": "satelite",
-    "translateX": 800
+    "translateX": 830
   }, {
     "type": "satelite",
-    "translateX": 590
+    "translateX": 750
+  }, {
+    "type": "satelite",
+    "translateX": 1000
   }]
 ];
 
-*/
 
 
-let obstacleGeneratedList = []
-//let obstacleGeneratedListSatelite = []
+let obstacleGeneratedList = [];
+let obstacleGeneratedListSatelite = [];
 
 function createObstacle(type, translateX, astronaute) {
   let obstacle = oxo.elements.createElement({
@@ -203,10 +201,11 @@ function createObstacle(type, translateX, astronaute) {
     },
     appendTo: 'body'
   });
-
+  //debugger
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
-    if (type === 'fireball' && 'satelite') {
+    if (type === 'fireball' || type == 'satelite') {
       launchgameover();
+      //debugger
 
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
@@ -290,22 +289,26 @@ function isRandomTranslateXAlreadySet(newRandomTransform) {
   return isAlreadySet;
 }
 
-function generateObstacleLine(astronaute) {
-  let indexRandom = getRandomInt(0, obstacleGeneratedScenarioList.length - 1);
-  console.log("scenario index choose " + indexRandom);
+function generateObstacleLine(astronaute, shouldGenerateSatelite) {
 
-  let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
-  console.log("scenarioChooseWithObstacleList", scenarioChooseWithObstacleList)
-  scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
-    obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
-  })
-
-  setInterval(function () {
-    obstacleGeneratedList.forEach(function (obstacle) {
-      //console.log(obstacle);
-      oxo.animation.move(obstacle, 'down', 20);
+  if (shouldGenerateSatelite) {
+    let indexRandom = getRandomInt(0, obstacleGeneratedScenarioListSatelite.length - 1);
+    console.log("scenario index choose " + indexRandom);
+    let scenarioChooseWithObstacleListSatelite = obstacleGeneratedScenarioListSatelite[indexRandom];
+    console.log("scenarioChooseWithObstacleListSatelite", scenarioChooseWithObstacleListSatelite)
+    scenarioChooseWithObstacleListSatelite.forEach(function (obstacleInfo) {
+      obstacleGeneratedListSatelite.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
     })
-  }, 200);
+  } else {
+    let indexRandom = getRandomInt(0, obstacleGeneratedScenarioList.length - 1);
+    console.log("scenario index choose " + indexRandom);
+  
+    let scenarioChooseWithObstacleList = obstacleGeneratedScenarioList[indexRandom];
+    console.log("scenarioChooseWithObstacleList", scenarioChooseWithObstacleList)
+    scenarioChooseWithObstacleList.forEach(function (obstacleInfo) {
+      obstacleGeneratedList.push(createObstacle(obstacleInfo.type, obstacleInfo.translateX, astronaute))
+    })
+  }
 }
 
 function launchGame() {
@@ -328,7 +331,13 @@ function launchGame() {
     //generateObstacleLine(selectors.astronaute);
 
     let obstacleInterval = setInterval(function () {
-      generateObstacleLine(selectors.astronaute);
+      generateObstacleLine(selectors.astronaute, false);
+      setInterval(function () {
+        obstacleGeneratedList.forEach(function (obstacle) {
+          //console.log(obstacle);
+          oxo.animation.move(obstacle, 'down', 20);
+        })
+      }, 300);
     }, 8000)
 
 
@@ -341,12 +350,28 @@ function launchGame() {
 
     // remove after the the exit of vulcain
     setTimeout(function () {
-
+      console.log("Disabled obstacle fireball + fire")
       clearInterval(obstacleInterval);
       let allObstacle = document.querySelectorAll("div.obstacle");
       allObstacle.forEach(function (obstacle) {
         obstacle.remove();
       })
+
+      console.log("setTimeout 8s")
+      setTimeout(function () {
+        console.log("enabled obstacle satelite");
+        let obstacleInterval = setInterval(function () {
+          generateObstacleLine(selectors.astronaute, true);
+          setInterval(function () {
+            obstacleGeneratedListSatelite.forEach(function (obstacle) {
+              //console.log(obstacle);
+              oxo.animation.move(obstacle, 'down', 20);
+            })
+          }, 450);
+        }, 8000)
+      }, 1000);
+
+
     }, 29600);
 
     // clean obstacle
