@@ -1,0 +1,55 @@
+@mixin primary_color {
+  color: #fde526;
+}
+
+@mixin color_text {
+  color: #000000;
+}
+
+body {
+  background-image: url(..\..\img\background.png);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+}
+
+.page__intro {
+  font-family: Russo One;
+  font-style: normal;
+  font-weight: normal;
+  margin: 50px;
+  font-size: 70px;
+  line-height: 84px;
+  text-shadow: 0px 0px 10px rgba(255, 184, 0, 0.51);
+  @include primary_color();
+}
+
+.page__text {
+  font-family: Russo One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 60px;
+  margin: 30px;
+  @include color_text();
+}
+
+.page__button {
+  @include color_text();
+  font-family: Russo One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 48px;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-radius: 25px;
+  margin-top: 20px;
+  background-color: #fde526;
+  text-decoration: none;
+}
