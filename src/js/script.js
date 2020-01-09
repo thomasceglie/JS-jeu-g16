@@ -269,6 +269,15 @@ function launchgameover() {
   });
 }
 
+function launchgameover() {
+  oxo.screens.loadScreen('game-over', function () {
+    const buttonRestartTheGame = document.querySelector('button.button-restart');
+    buttonRestartTheGame.addEventListener('click', function () {
+      launchGame()
+    });
+  });
+}
+
 function isRandomTranslateXAlreadySet(newRandomTransform) {
   let isAlreadySet = false
   fireballGeneratedlist.forEach(function (fireball) {
@@ -322,12 +331,12 @@ function launchGame() {
       generateObstacleLine(selectors.astronaute);
     }, 8000)
       
-    /*
-    // gameover if x second
+    
+    // when reach on top
     setTimeout(function () {
-      oxo.screens.loadScreen('game-over', function () {})
-    }, 35000);
-    */
+      oxo.screens.loadScreen('screen-win', function () {})
+    }, 37000);
+    
 
 
     // remove after the the exit of vulcain
