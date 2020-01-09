@@ -281,4 +281,4 @@ function startEventListenerOnKeyPads(selectors) {
 }
 
 
-launchgameover()
+launchhome()
