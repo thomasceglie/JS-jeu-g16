@@ -8,49 +8,49 @@ const limitPercentageFirstVP = 0.5;
 const numberOfFireTakenForVictory = 3;
 
 
-const obstacleGeneratedScenarioList = [
-  [{
-    "type": "fire",
-    "translateX": 500
-  }]
-];
-
 // const obstacleGeneratedScenarioList = [
 //   [{
-//     "type": "satelite",
-//     "translateX": 800
-//   }, {
-//     "type": "fire",
-//     "translateX": 500
-//   }, {
-//     "type": "fireball",
-//     "translateX": 430
-//   }],
-//   [{
-//     "type": "satelite",
-//     "translateX": 700
-//   }, {
-//     "type": "fireball",
-//     "translateX": 500
-//   }],
-//   [{
-//     "type": "fire",
-//     "translateX": 450
-//   }],
-//   [{
-//     "type": "fireball",
-//     "translateX": 800
-//   }, {
-//     "type": "fire",
-//     "translateX": 500
-//   }, {
-//     "type": "fire",
-//     "translateX": 430
-//   }, {
 //     "type": "fire",
 //     "translateX": 500
 //   }]
-// ]; 
+// ];
+
+const obstacleGeneratedScenarioList = [
+  [{
+    "type": "satelite",
+    "translateX": 800
+  }, {
+    "type": "fire",
+    "translateX": 500
+  }, {
+    "type": "fireball",
+    "translateX": 430
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 700
+  }, {
+    "type": "fireball",
+    "translateX": 500
+  }],
+  [{
+    "type": "fire",
+    "translateX": 450
+  }],
+  [{
+    "type": "fireball",
+    "translateX": 800
+  }, {
+    "type": "fire",
+    "translateX": 500
+  }, {
+    "type": "satelite",
+    "translateX": 430
+  }, {
+    "type": "fire",
+    "translateX": 500
+  }]
+]; 
 
 let obstacleGeneratedList = []
 
@@ -73,34 +73,12 @@ function createObstacle(type, translateX, astronaute) {
       console.log(document.querySelector("div.countFire2"))
       console.log(document.querySelector("div.countFire3"))
 
-
-
-
-
-
-      // "fireCounter1": document.querySelector("div.countFire1"),
-      // "fireCounter2": document.querySelector("div.countFire2"),
-      //   "fireCounter3": document.querySelector("div.countFire3")
-      
       obstacle.remove();
       oxo.player.addToScore(1)
 
-      if (oxo.player.getScore() == 1) {
-        let counterFire = document.querySelector("div.countFire1")
-        counterFire.style.opacity = 1;
-      }
-
-      if (oxo.player.getScore() == 2) {
-        let counterFire = document.querySelector("div.countFire2")
-        counterFire.style.opacity = 1;
-      }
-
-      if (oxo.player.getScore() == 3) {
-        let counterFire = document.querySelector("div.countFire3")
-        counterFire.style.opacity = 1;
-      }
-
-
+      console.log("div.countFire" + oxo.player.getScore())
+      let counterFire = document.querySelector("div.countFire" + oxo.player.getScore());
+      counterFire.style.opacity = 1;
 
       if (oxo.player.getScore() == numberOfFireTakenForVictory) {
         oxo.screens.loadScreen('screen-win', function() {});
@@ -185,6 +163,13 @@ function launchGame() {
       generateObstacleLine(selectors.astronaute);
     }, 8000);
 
+    // gameover if x second
+    setTimeout(function () {
+      oxo.screens.loadScreen('game-over', function () {})
+    }, 35000);
+
+
+    // remove after the the exit of vulcain
     setTimeout(function () {
       clearInterval(obstacleInterval);
       let allObstacle = document.querySelectorAll("div.obstacle");
@@ -192,8 +177,6 @@ function launchGame() {
         obstacle.remove();
       })
     }, 29600);
-
-
 
     // clean obstacle
     let cleanZone = oxo.elements.createElement({
