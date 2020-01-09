@@ -102,7 +102,97 @@ const obstacleGeneratedScenarioList = [
   }]
 ];
 
+/*
+const obstacleGeneratedScenarioListSatelite = [
+  [{
+    "type": "satelite",
+    "translateX": 800
+  }, {
+    "type": "satelite",
+    "translateX": 500
+  }, {
+    "type": "satelite",
+    "translateX": 430
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 700
+  }, {
+    "type": "satelite",
+    "translateX": 500
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 430
+  }, {
+    "type": "satelite",
+    "translateX": 750
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 800
+  }, {
+    "type": "satelite",
+    "translateX": 500
+  }, {
+    "type": "satelite",
+    "translateX": 430
+  }, {
+    "type": "satelite",
+    "translateX": 500
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 650
+  }, {
+    "type": "satelite",
+    "translateX": 450
+  }, {
+    "type": "satelite",
+    "translateX": 530
+  }, {
+    "type": "satelite",
+    "translateX": 780
+  }, {
+    "type": "satelite",
+    "translateX": 600
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 600
+  }, {
+    "type": "satelite",
+    "translateX": 720
+  }, {
+    "type": "satelite",
+    "translateX": 460
+  }, {
+    "type": "satelite",
+    "translateX": 800
+  }],
+  [{
+    "type": "satelite",
+    "translateX": 740
+  }, {
+    "type": "satelite",
+    "translateX": 500
+  }, {
+    "type": "satelite",
+    "translateX": 430
+  }, {
+    "type": "satelite",
+    "translateX": 800
+  }, {
+    "type": "satelite",
+    "translateX": 590
+  }]
+];
+
+*/
+
+
 let obstacleGeneratedList = []
+//let obstacleGeneratedListSatelite = []
 
 function createObstacle(type, translateX, astronaute) {
   let obstacle = oxo.elements.createElement({
@@ -117,7 +207,7 @@ function createObstacle(type, translateX, astronaute) {
 
   oxo.elements.onCollisionWithElementOnce(obstacle, astronaute, function () {
     if (type === 'fireball' && 'satelite') {
-      oxo.screens.loadScreen('game-over', function () { });
+      launchgameover()
     } else if (type === 'fire') {
       console.log(document.querySelector("div.countFire1"))
       console.log(document.querySelector("div.countFire2"))
