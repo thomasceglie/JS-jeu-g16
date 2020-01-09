@@ -1,11 +1,4 @@
-function launchhome() {
-  oxo.screens.loadScreen('home', function () {
-    const buttonStartIntro = document.querySelector('button.play__button');
-    buttonStartIntro.addEventListener('click', function () {
-      launchIntro()
-    });
-  });
-}
+
 
 //oxo.screens.loadScreen('game-over');
 // Constant
@@ -159,11 +152,29 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function launchhome() {
+  oxo.screens.loadScreen('home', function () {
+    const buttonStartIntro = document.querySelector('button.play__button');
+    buttonStartIntro.addEventListener('click', function () {
+      launchIntro()
+    });
+  });
+}
+
 function launchIntro() {
   oxo.screens.loadScreen('intro', function () {
     const buttonPlay = document.querySelector('button.page__button');
     buttonPlay.addEventListener('click', function () {
       launchGame()
+    });
+  });
+}
+
+function launchgameover() {
+  oxo.screens.loadScreen('game-over', function () {
+    const buttonRestartTheGame = document.querySelector('button.button-restart');
+    buttonRestartTheGame.addEventListener('click', function () {
+      launchhome()
     });
   });
 }
@@ -219,7 +230,7 @@ function launchGame() {
 
     let obstacleInterval = setInterval(function () {
       generateObstacleLine(selectors.astronaute);
-    }, 8000);
+    }, 6000);
 
     // gameover if x second
     setTimeout(function () {
