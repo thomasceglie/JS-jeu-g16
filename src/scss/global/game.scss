@@ -3,6 +3,31 @@ body.game {
     position: relative;
     animation: moveItBackground 63s linear;
 
+    div.loaderOverlay {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top:0px;
+        left:0px;
+        z-index: 9999;
+        background: yellow;
+        opacity: 1;
+
+        h1 {
+            display: flex;
+            font-family: Russo One;
+            font-size: 400px;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        &.hidden {
+            opacity: 0;
+            transition: opacity .25s ease-in-out;
+        }
+    }
+
     div.astronaute {
         background-image: url("/assets/game/astronaute.png");
         position: absolute;

@@ -254,7 +254,7 @@ function launchIntro() {
   oxo.screens.loadScreen('intro', function () {
     const buttonPlay = document.querySelector('button.page__button');
     buttonPlay.addEventListener('click', function () {
-      launchGame()
+      launchLoader()
     });
   });
 }
@@ -263,7 +263,7 @@ function launchgameover() {
   oxo.screens.loadScreen('game-over', function () {
     const buttonRestartTheGame = document.querySelector('button.button-restart');
     buttonRestartTheGame.addEventListener('click', function () {
-      launchGame()
+      launchLoader()
     });
   });
 }
@@ -310,80 +310,100 @@ function generateObstacleLine(astronaute, shouldGenerateSatelite) {
     })
   }
 }
-
 function launchGame() {
-  oxo.screens.loadScreen('game', function () {
-
-    const selectors = {
-      "astronaute": document.querySelector("div.astronaute"),
-      "background": document.querySelector("body.game")
-    };
-
-    // Init backgroundPositionY to the end minus viewport
-    backgroundYPosition = 800;
-    selectors.background.style.backgroundPositionY = backgroundYPosition + "px";
-
-    // Init positin astronaute
-    oxo.animation.setPosition(selectors.astronaute, { x: 600, y: 400 });
-
-    startEventListenerOnKeyPads(selectors);
-
-    //generateObstacleLine(selectors.astronaute);
-
-    let obstacleInterval = setInterval(function () {
-      generateObstacleLine(selectors.astronaute, false);
-      setInterval(function () {
-        obstacleGeneratedList.forEach(function (obstacle) {
-          //console.log(obstacle);
-          oxo.animation.move(obstacle, 'down', 20);
-        })
-      }, 300);
-    }, 8000)
-
-
-    // when reach on top
-    setTimeout(function () {
-      launchscreenwin()
-    }, 63000);
+  const selectors = {
+    "astronaute": document.querySelector("div.astronaute"),
+    "background": document.querySelector("body.game")
+  };
 
 
 
-    // remove after the the exit of vulcain
-    setTimeout(function () {
-      console.log("Disabled obstacle fireball + fire")
-      clearInterval(obstacleInterval);
-      let allObstacle = document.querySelectorAll("div.obstacle");
-      allObstacle.forEach(function (obstacle) {
-        obstacle.remove();
+  // Init backgroundPositionY to the end minus viewport
+  backgroundYPosition = 800;
+  selectors.background.style.backgroundPositionY = backgroundYPosition + "px";
+
+  // Init positin astronaute
+  oxo.animation.setPosition(selectors.astronaute, { x: 600, y: 400 });
+
+  startEventListenerOnKeyPads(selectors);
+
+  //generateObstacleLine(selectors.astronaute);
+
+  let obstacleInterval = setInterval(function () {
+    generateObstacleLine(selectors.astronaute, false);
+    setInterval(function () {
+      obstacleGeneratedList.forEach(function (obstacle) {
+        //console.log(obstacle);
+        oxo.animation.move(obstacle, 'down', 20);
       })
-
-      console.log("setTimeout 8s")
-      setTimeout(function () {
-        console.log("enabled obstacle satelite");
-        let obstacleInterval = setInterval(function () {
-          generateObstacleLine(selectors.astronaute, true);
-          setInterval(function () {
-            obstacleGeneratedListSatelite.forEach(function (obstacle) {
-              //console.log(obstacle);
-              oxo.animation.move(obstacle, 'down', 20);
-            })
-          }, 450);
-        }, 8000)
-      }, 1000);
+    }, 300);
+  }, 8000)
 
 
-    }, 29600);
+  // when reach on top
+  setTimeout(function () {
+    launchscreenwin()
+  }, 59500);
 
-    // clean obstacle
-    let cleanZone = oxo.elements.createElement({
-      type: 'div',
-      class: 'cleanZone',
-      obstacle: false,
-      styles: {
-        transform: 'translate(0px, 99%)'
-      },
-      appendTo: 'body'
-    });
+
+
+  // remove after the the exit of vulcain
+  setTimeout(function () {
+    console.log("Disabled obstacle fireball + fire")
+    clearInterval(obstacleInterval);
+    let allObstacle = document.querySelectorAll("div.obstacle");
+    allObstacle.forEach(function (obstacle) {
+      obstacle.remove();
+    })
+
+    console.log("setTimeout 8s")
+    setTimeout(function () {
+      console.log("enabled obstacle satelite");
+      let obstacleInterval = setInterval(function () {
+        generateObstacleLine(selectors.astronaute, true);
+        setInterval(function () {
+          obstacleGeneratedListSatelite.forEach(function (obstacle) {
+            //console.log(obstacle);
+            oxo.animation.move(obstacle, 'down', 20);
+          })
+        }, 450);
+      }, 8000)
+    }, 1000);
+
+
+  }, 26500);
+
+  // clean obstacle
+  let cleanZone = oxo.elements.createElement({
+    type: 'div',
+    class: 'cleanZone',
+    obstacle: false,
+    styles: {
+      transform: 'translate(0px, 99%)'
+    },
+    appendTo: 'body'
+  });
+}
+
+function launchLoader() {
+  oxo.screens.loadScreen('game', function () {
+    let loaderOverlay = document.querySelector("div.loaderOverlay");
+    let countdownLabel = loaderOverlay.querySelector("h1");
+    let countdown = 3
+    let setIntervalCountdown = setInterval(function () {
+      countdownLabel.innerText = countdown
+      countdown -= 1;
+      if (countdown == -1) {
+        clearInterval(setIntervalCountdown);
+      }
+    }, 500);
+    let timeout = setTimeout(function () {
+      launchGame();
+      loaderOverlay.classList.add('hidden');
+      clearTimeout(timeout);
+    }, 3000);
+    
+  
   });
 }
 
