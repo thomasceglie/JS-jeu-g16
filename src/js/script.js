@@ -270,6 +270,7 @@ function launchgameover() {
 
 function launchscreenwin() {
   oxo.screens.loadScreen('screen-win', function () {
+    soundPlayer.pause();
     const buttonPlayAgain = document.querySelector('button.again');
     buttonPlayAgain.addEventListener('click', function () {
       launchIntro()
