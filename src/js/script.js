@@ -1,3 +1,12 @@
+function launchome() {
+  oxo.screens.loadScreen('home', function () {
+    const buttonStartIntro = document.querySelector('button.play__button');
+    buttonStartIntro.addEventListener('click', function () {
+      launchIntro()
+    });
+  });
+}
+
 //oxo.screens.loadScreen('game-over');
 // Constant
 
@@ -219,7 +228,7 @@ function startEventListenerOnKeyPads(selectors) {
 }
 
 
-launchIntro()
+launchHome()
 
 
 /*
