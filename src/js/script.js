@@ -1,4 +1,4 @@
-oxo.screens.loadScreen('game-over');
+//oxo.screens.loadScreen('game-over');
 // Constant
 
 const viewportWidth = window.innerWidth;
@@ -104,7 +104,7 @@ function getRandomInt(min, max) {
 
 function launchIntro() {
   oxo.screens.loadScreen('intro', function () {
-    const buttonPlay = document.querySelector('button.start');
+    const buttonPlay = document.querySelector('button.page__button');
     buttonPlay.addEventListener('click', function () {
       launchGame()
     });
