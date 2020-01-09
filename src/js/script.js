@@ -1,5 +1,4 @@
 
-
 //oxo.screens.loadScreen('game-over');
 // Constant
 
@@ -174,7 +173,7 @@ function launchgameover() {
   oxo.screens.loadScreen('game-over', function () {
     const buttonRestartTheGame = document.querySelector('button.button-restart');
     buttonRestartTheGame.addEventListener('click', function () {
-      launchhome()
+      launchGame()
     });
   });
 }
@@ -230,12 +229,7 @@ function launchGame() {
 
     let obstacleInterval = setInterval(function () {
       generateObstacleLine(selectors.astronaute);
-    }, 6000);
-
-    // gameover if x second
-    setTimeout(function () {
-      oxo.screens.loadScreen('game-over', function () { })
-    }, 35000);
+    }, 6000).
 
 
     // remove after the the exit of vulcain
@@ -287,4 +281,4 @@ function startEventListenerOnKeyPads(selectors) {
 }
 
 
-launchhome()
+launchgameover()
