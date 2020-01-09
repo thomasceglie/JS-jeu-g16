@@ -5,9 +5,7 @@ const viewportHeight = window.innerHeight;
 const stepAstronauteMove = 15;
 const stepBackgroundMove = 80;
 const limitPercentageFirstVP = 0.5;
-const numberOfFireTakenForVictory = 2;
-
-
+const numberOfFireTakenForVictory = 3;
 
 
 const obstacleGeneratedScenarioList = [
@@ -71,8 +69,39 @@ function createObstacle(type, translateX, astronaute) {
     if (type === 'fireball' && 'satelite') {
       oxo.screens.loadScreen('game-over', function() {});
     } else if (type === 'fire') {
+      console.log(document.querySelector("div.countFire1"))
+      console.log(document.querySelector("div.countFire2"))
+      console.log(document.querySelector("div.countFire3"))
+
+
+
+
+
+
+      // "fireCounter1": document.querySelector("div.countFire1"),
+      // "fireCounter2": document.querySelector("div.countFire2"),
+      //   "fireCounter3": document.querySelector("div.countFire3")
+      
       obstacle.remove();
       oxo.player.addToScore(1)
+
+      if (oxo.player.getScore() == 1) {
+        let counterFire = document.querySelector("div.countFire1")
+        counterFire.style.opacity = 1;
+      }
+
+      if (oxo.player.getScore() == 2) {
+        let counterFire = document.querySelector("div.countFire2")
+        counterFire.style.opacity = 1;
+      }
+
+      if (oxo.player.getScore() == 3) {
+        let counterFire = document.querySelector("div.countFire3")
+        counterFire.style.opacity = 1;
+      }
+
+
+
       if (oxo.player.getScore() == numberOfFireTakenForVictory) {
         oxo.screens.loadScreen('screen-win', function() {});
       }

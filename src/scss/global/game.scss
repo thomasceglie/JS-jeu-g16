@@ -38,6 +38,29 @@ body.game {
         height: 40px;
         width: 40px;
     }
+
+    div.countFire {
+        background-image: url("/assets/game/fire.png");
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        background-position: cover;
+        background-size: cover;
+        top: 20px;
+        opacity: 0;
+
+        &.countFire1 {
+            right: 8px;
+        }
+
+        &.countFire2 {
+            right: 56px;
+        }
+
+        &.countFire3 {
+            right: 104px;
+        }
+    }
 }
 
 
