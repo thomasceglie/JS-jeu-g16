@@ -45,7 +45,10 @@ const obstacleGeneratedScenarioList = [
   }],
   [{
     "type": "fire",
-    "translateX": 450
+    "translateX": 430
+  }, {
+    "type": "fireball",
+    "translateX": 750
   }],
   [{
     "type": "fireball",
@@ -74,7 +77,7 @@ const obstacleGeneratedScenarioList = [
     "translateX": 780
   }, {
     "type": "fireball",
-    "translateX": 550
+    "translateX": 600
   }],
   [{
     "type": "fireball",
@@ -103,7 +106,7 @@ const obstacleGeneratedScenarioList = [
     "translateX": 800
   }, {
     "type": "fireball",
-    "translateX": 500
+    "translateX": 590
   }]
 ];
 
