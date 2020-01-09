@@ -1,9 +1,5 @@
-body.game-over {
-        position: absolute;
+.gameOver {
 width: 354px;
-height: 121px;
-left: 506px;
-top: 222px;
 font-family: Russo One;
 font-style: normal;
 font-weight: normal;
@@ -22,10 +18,10 @@ text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 247, 171, 0
   padding-left: 80px;
   padding-right: 80px;
   border-radius: 25px;
-  margin-top: 20px;
   background-color: #fde526;
   text-decoration: none;
-  margin-top: 100px;
+ margin-top: 100px;
+ 
 }
 
 .container {
@@ -33,4 +29,9 @@ text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 247, 171, 0
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  background: url(../../img/background-game-over.png);
+  width: 100vw;
+  height: 100vh;
 }
+
+
