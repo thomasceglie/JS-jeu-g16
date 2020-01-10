@@ -413,7 +413,7 @@ function launchLoader() {
   });
 }
 
-function startEventListenerOnKeyPads(selectors) {
+/* function startEventListenerOnKeyPads(selectors) {
 
   oxo.inputs.listenKey('right', function () {
     console.log("right");
@@ -439,55 +439,55 @@ function startEventListenerOnKeyPads(selectors) {
 
 }
 
-
+ */
 launchhome()
 
 
-// CODE TO GENERATE RANDOM KEYS ARROWS   
+//CODE TO GENERATE RANDOM KEYS ARROWS   
 
-// function startEventListenerOnKeyPads(selectors) {
-//   function shuffle(array) {
-//     array.sort(() => Math.random() - 0.5);
-// }
+function startEventListenerOnKeyPads(selectors) {
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
 
-// let a = 'up';
-// let b = 'down';
-// let c = 'left';
-// let d = 'right';
-
-
-// let KeyDirection = [a, b, c, d];
-
-// shuffle(KeyDirection);
-// console.log(KeyDirection);
-
-// var up = KeyDirection[0];
-// var down = KeyDirection[1];
-// var left = KeyDirection[2];
-// var right = KeyDirection[3];
-
-// console.log(up, down, left, right);
+let a = 'up';
+let b = 'down';
+let c = 'left';
+let d = 'right';
 
 
-//   oxo.inputs.listenKey("right", function () {
-//     console.log("right");
-//     oxo.animation.move(selectors.astronaute, right, stepAstronauteMove);
-//   });
+let KeyDirection = [a, b, c, d];
 
-//   oxo.inputs.listenKey("left", function () {
-//     console.log("left");
-//     oxo.animation.move(selectors.astronaute, left, stepAstronauteMove);
-//   });
-//   oxo.inputs.listenKey("up", function () {
-//     console.log("up");
-//     oxo.animation.move(selectors.astronaute, up, stepAstronauteMove);
+shuffle(KeyDirection);
+console.log(KeyDirection);
 
-//   });
+var up = KeyDirection[0];
+var down = KeyDirection[1];
+var left = KeyDirection[2];
+var right = KeyDirection[3];
 
-//   oxo.inputs.listenKey("down", function () {
-//     console.log("down");
-//     oxo.animation.move(selectors.astronaute, down, stepAstronauteMove);
-//   });
+console.log(up, down, left, right);
 
-// }
+
+  oxo.inputs.listenKey("right", function () {
+    console.log("right");
+    oxo.animation.move(selectors.astronaute, right, stepAstronauteMove);
+  });
+
+  oxo.inputs.listenKey("left", function () {
+    console.log("left");
+    oxo.animation.move(selectors.astronaute, left, stepAstronauteMove);
+  });
+  oxo.inputs.listenKey("up", function () {
+    console.log("up");
+    oxo.animation.move(selectors.astronaute, up, stepAstronauteMove);
+
+  });
+
+  oxo.inputs.listenKey("down", function () {
+    console.log("down");
+    oxo.animation.move(selectors.astronaute, down, stepAstronauteMove);
+  });
+
+}
 // launchhome()
